@@ -1,0 +1,167 @@
+@import "../../assets/theme/index.less"; // 定义变量
+// van 主题
+.van-button {
+  width: 100%;
+  background-color: @red-primary;
+}
+
+.van-tab--active {
+  color: @red-primary;
+}
+
+.van-tabs__line {
+  background-color: @red-primary;
+}
+
+.van-stepper--round .van-stepper__plus {
+  background-color: @red-primary;
+}
+.van-stepper--round .van-stepper__minus {
+  color: @red-primary;
+  border-color: @red-primary;
+}
+
+.cartcontrol {
+  .cart-add {
+    .add {
+      color: @red-primary;
+    }
+  }
+  .cart-add-disabled {
+    .add {
+      color: @red-primary;
+    }
+  }
+}
+.sp {
+  .step-area {
+    > .working-ele,
+    > .work-end-ele {
+      > .info {
+        > .dot {
+          background: @red-primary;
+        }
+        > .tag {
+          background: @red-primary;
+        }
+      }
+    }
+  }
+}
+.date-selector {
+  color: @red-primary;
+}
+.mealPeriod {
+  .mealPeriod-left {
+    background: @red-primary;
+  }
+  .mealPeriod-right {
+    .status-ordered,
+    .status-not-payed {
+      color: @red-primary;
+    }
+  }
+}
+.ordermeal {
+  .header-bar {
+    .period-wrap {
+      > .active-period {
+        background: @red-primary;
+      }
+    }
+  }
+}
+.tagContain {
+  .active {
+    border: 1px solid @red-primary; /*no*/
+    color: @red-primary;
+  }
+}
+.shopCart {
+  .ball-container {
+    .ball {
+      &.drop-enter,
+      &.drop-enter-active {
+        .inner {
+          background: @red-primary;
+        }
+      }
+    }
+  }
+  .shopCar {
+    color: @red-primary;
+  }
+  .list-content {
+    .food {
+      .price {
+        color: @red-primary;
+      }
+    }
+  }
+}
+.attendance-preview {
+  .today-bg {
+    background-color: @red-light-primary !important;
+  }
+  > .operate-area {
+    > .deal-area {
+      > .step-area {
+        > .small-qj {
+          > .small-qj-item {
+            > .tag {
+              background: @red-primary;
+            }
+          }
+        }
+        > .working-ele,
+        > .work-end-ele {
+          > .info {
+            > .left {
+              > .dot {
+                background: @red-primary;
+              }
+              > .tag {
+                background: @red-primary;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  > .calendar-area {
+    > .week-body {
+      > .week-day {
+        .active-day-bg {
+          background-color: @red-primary !important;
+        }
+        .active-status-normal-bg {
+          background-color: @red-primary !important;
+        }
+      }
+    }
+  }
+}
+.guest-ticket-list,
+.apply-guest-ticket,
+.enable-guest-ticket {
+  > .scroll-wrapper {
+    > .scroll-content {
+      .title {
+        > .tab {
+          > .active-tab {
+            color: @red-primary;
+            border-bottom: 4px solid @red-primary;
+          }
+        }
+      }
+    }
+  }
+  .ticket {
+    > .right {
+      > .can-use {
+        color: @red-primary;
+      }
+    }
+  }
+}

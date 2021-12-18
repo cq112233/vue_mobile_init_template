@@ -1,0 +1,10 @@
+{
+path: '{{camelCase name}}',
+name: '{{camelCase name}}',
+meta: {
+title: '{{des}}',
+keepAlive:{{keepAlive}},
+customNav:{{customNav}}
+},
+component: () => import(/* webpackChunkName: "{{ name }}" */ '../views/{{camelCase name}}/{{camelCase name}}')
+},

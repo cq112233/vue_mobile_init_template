@@ -1,0 +1,9 @@
+{
+    "app":[
+         {
+        "name":"a spa vue mobile project",
+        "script":"npm",
+        "args":"start"
+        }
+    ]
+}
