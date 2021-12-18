@@ -1,5 +1,6 @@
 <template>
   <div>
+    我修改了
     <van-button to="/page/lang">切换语言</van-button>
     <van-button :to="{ name: 'changeTheme' }">切换主题</van-button>
 
