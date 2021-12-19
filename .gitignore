@@ -2,7 +2,8 @@
 node_modules
 src/learn
 /dist
-
+/webpack.config.production.js
+/webpack.config.development.js
 
 # local env files
 .env.local

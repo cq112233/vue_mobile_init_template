@@ -2,6 +2,12 @@
 
 ## h5-app 基本使用说明
 
+### 查看webpack配置
+```
+开发环境：npx vue-cli-service inspect --mode development >> webpack.config.development.js
+生产环境：npx vue-cli-service inspect --mode production >> webpack.config.production.js
+```
+
 ### plop使用
 
 -  一键生成 页面，组件,再也不用 复制粘贴了
@@ -74,13 +80,11 @@ css样式: xxx-yyy
 ### 项目根目录
 | 根目录 |文件说明|
 |-|-|
+| .github     | ci/cd 集成式持续自动化部署脚本                                         | 
 | plop-templates     | plop模版                                         | 
 | public             | 静态资源                                         | 
 | app.config.js      | app基本配置                                         | 
 | plopfile.js        | plop命令入口 | 
-
-
-### linux + github Actions (jenkins等) 实现现代化自动化持续部署(CI/CD)
 
 
 

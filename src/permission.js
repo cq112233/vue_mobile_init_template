@@ -8,6 +8,7 @@ import 'nprogress/nprogress.css' // nprogress 进度条
 import { Toast } from 'vant'
 const { isOpenAsyncRoutes, routerWhiteLists, isNprogress } = config// 进度条样式
 // 函数颗粒化 缓存数据
+
 function setTitleGenertor() {
   const host = location.host
   return function(to) {

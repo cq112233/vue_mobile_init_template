@@ -1,9 +1,38 @@
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const WebpackBar = require("webpackbar");
 const vantTheme = path.resolve(__dirname, "./src/assets/theme/index.less");
 const isProduction = process.env.NODE_ENV === "production";
+const appConfig = require("./app.config.js");
 const productionGzipExtensions = ["js", "css"]; //压缩的文件类型
+
+// 合并对象属性
+function mergeObj(obj1, obj2) {
+  if (!obj2) {
+    if (!obj1) {
+      let obj = Object.create(null);
+      obj.link = [];
+      obj.script = [];
+      return obj;
+    } else {
+      return obj1;
+    }
+  }
+  for (const key in obj2) {
+    if (Object.hasOwnProperty.call(obj2, key)) {
+      const element = obj2[key];
+      if (obj1[key] && obj1[key].length) {
+        obj1[key] = [...new Set(obj1[key].concat(element))];
+      } else {
+        obj1[key] = [];
+        obj1[key] = Array.from(new Set(obj1[key].concat(element)));
+      }
+    }
+  }
+
+  return obj1;
+}
 module.exports = {
   // eslint 关闭
   lintOnSave: false,
@@ -68,12 +97,21 @@ module.exports = {
     //开启
     open: false
   },
-
+  // 在生产环境下为 Babel 和 TypeScript 使用 `thread-loader`
+  // 在多核机器下会默认开启。
+  parallel: require("os").cpus().length > 1,
   chainWebpack: config => {
+    // html 模板变量操作  hbs模板好用
+    config.plugin("html").tap(args => {
+      args[0].cdn = mergeObj(
+        appConfig.cdn&&appConfig.cdn[process.env.NODE_ENV],
+        appConfig.cdn&&appConfig.cdn.common
+      );
+      return args;
+    });
     // 修复HMR
     config.resolve.symlinks(true);
   },
-  // cdn 映入window全局挂载,打包忽略
   configureWebpack: config => {
     if (isProduction) {
       // 开启分离js
@@ -127,6 +165,12 @@ module.exports = {
         })
       );
     }
+    config.plugins.push(
+      ...[
+        // 添加 进度条
+        new WebpackBar()
+      ]
+    );
 
     config.devtool = isProduction ? "cheap-module-source-map" : "source-map";
     return {
@@ -144,7 +188,7 @@ module.exports = {
       module: {
         rules: [{ test: /\.ts$/, loader: "ts-loader" }]
       },
-      // 使用cdn 加载 web将不打包
+      // 使用cdn 加载 web将不打包   用dll 处理node_moodle 中的模块
       externals: {
         // vue: 'Vue',
         // vant: 'vant',
