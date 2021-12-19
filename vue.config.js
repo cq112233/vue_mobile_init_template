@@ -188,18 +188,18 @@ module.exports = {
     config.plugins.push(
       ...[
         // 添加 进度条
-        new WebpackBar(),
-        new webpack.DllReferencePlugin({
+        // new WebpackBar(),
+        appConfig.isOpenDll?new webpack.DllReferencePlugin({
           manifest: path.resolve(__dirname,'public/dll/vendor-manifest.json')
-        }),
+        }):undefined,
         //这个主要是将生成的vendor.dll.js文件加上hash值插入到页面中。
-        new AddAssetHtmlPlugin([
+        appConfig.isOpenDll?new AddAssetHtmlPlugin([
           {
             filepath: path.resolve(__dirname, "public/dll/vendor.dll.js"),
             includeSourcemap: false,
             hash: true
           }
-        ])
+        ]):undefined
       ]
     );
     // 源代码跟踪

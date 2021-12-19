@@ -1,13 +1,13 @@
 const path = require("path");
 const webpack = require("webpack");
+const appConfig = require("./app.config.js");
+let dll = []
+if(appConfig.isOpenDll) {
+  dll =appConfig.dll
+}
 module.exports = {
   entry: {
-    vendor: [
-      "vue",
-      "vant",
-      "axios",
-      "vue-i18n" //这里是需要缓存的模块和插件
-    ]
+    vendor:dll//这里是需要缓存的模块和插件
   },
   output: {
     path: path.join(__dirname, "public/dll"), //放在项目的static/js目录下面

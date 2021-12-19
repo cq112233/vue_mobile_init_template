@@ -42,6 +42,13 @@ const appConfig = {
       ]
     }
   }, // cdn资源目录   html自动cdn引入
+  dll:[
+    "vue",
+    "vant",
+    "axios",
+    "vue-i18n" 
+  ],//这里是需要缓存的模块和插件
+  isOpenDll:false, // 是否开启dll 缓存
   initThemeColor: "red", // 初始化主题颜色  defualt red blue green orange,
   isOpenAsyncRoutes: true, // 开启动态路由权限
   isShowKeFu: false, // 是否显示客服
