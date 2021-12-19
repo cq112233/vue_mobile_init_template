@@ -38,6 +38,7 @@ function mergeObj(obj1, obj2) {
 module.exports = {
   // eslint 关闭
   lintOnSave: false,
+  // publicPath:'./',
   // rem 适配
   css: {
     loaderOptions: {

@@ -11,8 +11,6 @@
     <i class="icon icon-shoucang1"></i>
     <div :style="{ color: themeColor }">12333</div>
     <Test />
-    <div>111777</div>
-    
     <calendar />
   </div>
 </template>
