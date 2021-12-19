@@ -111,19 +111,19 @@ module.exports = {
       );
       return args;
     });
-      config.module
-      .rule('images')
-      .use('image-webpack-loader')
-      .loader('image-webpack-loader')
+    config.module
+      .rule("images")
+      .use("image-webpack-loader")
+      .loader("image-webpack-loader")
       .options({
         //{ bypassOnDebug: true }
         mozjpeg: { progressive: true, quality: 65 }, // Compress JPEG images
-        optipng: { enabled: false },		// Compress PNG images
-        pngquant: { quality: [0.65, 0.9], speed: 4 },   // Compress PNG images
-        gifsicle: { interlaced: false },		// Compress SVG images
+        optipng: { enabled: false }, // Compress PNG images
+        pngquant: { quality: [0.65, 0.9], speed: 4 }, // Compress PNG images
+        gifsicle: { interlaced: false } // Compress SVG images
         //					webp: { quality: 75 }
       })
-      .end()
+      .end();
     // 修复HMR
     config.resolve.symlinks(true);
   },
@@ -180,26 +180,31 @@ module.exports = {
             ), // 匹配文件名
             threshold: 10240, // 对超过10k的数据压缩
             minRatio: 0.8 // 压缩率小于0.8才会压缩
-          }),
+          })
         ]
       );
     }
-
+    if (appConfig.isOpenDll) {
+      config.plugins.push(
+        ...[
+          new webpack.DllReferencePlugin({
+            manifest: path.resolve(__dirname, "public/dll/vendor-manifest.json")
+          }),
+          //这个主要是将生成的vendor.dll.js文件加上hash值插入到页面中。
+          new AddAssetHtmlPlugin([
+            {
+              filepath: path.resolve(__dirname, "public/dll/vendor.dll.js"),
+              includeSourcemap: false,
+              hash: true
+            }
+          ])
+        ]
+      );
+    }
     config.plugins.push(
       ...[
         // 添加 进度条
-        // new WebpackBar(),
-        appConfig.isOpenDll?new webpack.DllReferencePlugin({
-          manifest: path.resolve(__dirname,'public/dll/vendor-manifest.json')
-        }):undefined,
-        //这个主要是将生成的vendor.dll.js文件加上hash值插入到页面中。
-        appConfig.isOpenDll?new AddAssetHtmlPlugin([
-          {
-            filepath: path.resolve(__dirname, "public/dll/vendor.dll.js"),
-            includeSourcemap: false,
-            hash: true
-          }
-        ]):undefined
+        new WebpackBar()
       ]
     );
     // 源代码跟踪
