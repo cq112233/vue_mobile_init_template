@@ -87,6 +87,14 @@ css样式: xxx-yyy
 | plopfile.js        | plop命令入口 | 
 
 
+### 打标签 tag 项目重要节点
+
+
+```
+git tag v0.0.1
+git push origin v0.0.1
+git tag -d V0.0.1
+```
 
 
 

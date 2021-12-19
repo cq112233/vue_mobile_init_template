@@ -1,8 +1,5 @@
 <template>
   <div>
-    <p>哈哈哈</p>
-    <p>自動部署測試</p>
-    <p>測試</p>
     <van-button to="/page/lang">切换语言</van-button>
     <van-button :to="{ name: 'changeTheme' }">切换主题</van-button>
 
