@@ -1,7 +1,9 @@
 const path = require("path");
-const TerserPlugin = require('terser-webpack-plugin')
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const vantTheme = path.resolve(__dirname, "./src/assets/theme/index.less");
 const isProduction = process.env.NODE_ENV === "production";
+const productionGzipExtensions = ["js", "css"]; //压缩的文件类型
 module.exports = {
   // eslint 关闭
   lintOnSave: false,
@@ -29,7 +31,7 @@ module.exports = {
     }
   },
   devServer: {
-    hot: true,
+    // hot: true,
     proxy: {
       "/api": {
         // 这里最好有一个 /
@@ -54,7 +56,17 @@ module.exports = {
         target: "http://192.168.1.235:8500",
         changeOrigin: true
       }
-    }
+    },
+    //静态资源目录
+    contentBase: "./public",
+    //gzip 压缩
+    compress: true,
+    //端口号
+    port: 8080,
+    //热更新，不需要刷新浏览器 大大提高开发速度    hot 跟 hotOnly  hotOnly 热替换失败不会自动刷新便于找到问题
+    hotOnly: true,
+    //开启
+    open: false
   },
 
   chainWebpack: config => {
@@ -85,20 +97,37 @@ module.exports = {
               }
             }
           }
-        },
-        // 生產去除console
-        minimizer: [
-          new TerserPlugin({
-            sourceMap: false,
-            terserOptions: {
-              compress: {
-                drop_console: true
-              }
-            }
-          })
-        ]
+        }
       };
     }
+    if (isProduction) {
+      config.plugins.push(
+        //生产环境自动删除console
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            warnings: false,
+            compress: {
+              drop_debugger: true,
+              drop_console: true
+            }
+          },
+          sourceMap: false,
+          parallel: true
+        })
+      );
+    }
+    if (isProduction) {
+      config.plugins.push(
+        new CompressionWebpackPlugin({
+          filename: "[path].gz[query]", // 压缩后的文件名(保持原文件名，后缀加.gz)
+          algorithm: "gzip", // 使用gzip压缩
+          test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"), // 匹配文件名
+          threshold: 10240, // 对超过10k的数据压缩
+          minRatio: 0.8 // 压缩率小于0.8才会压缩
+        })
+      );
+    }
+
     config.devtool = isProduction ? "cheap-module-source-map" : "source-map";
     return {
       resolve: {
