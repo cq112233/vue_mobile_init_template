@@ -1,10 +1,10 @@
 <template>
   <div>
     <van-button to="/page/lang">切换语言</van-button>
-    <van-button :to="{ name: 'changeTheme' }">切换主题</van-button>
+    <van-button :to="{ path: '/page/changeTheme' }">切换主题</van-button>
 
-    <van-button :to="{ name: 'asyncRouteExample' }">asyncRouteExample</van-button>
-    <van-button :to="{ name: 'asyncRouteExample1' }">asyncRouteExample1</van-button>
+    <van-button :to="{ path: '/page/asyncRouteExample' }">asyncRouteExample</van-button>
+    <van-button :to="{ path: '/page/asyncRouteExample1' }">asyncRouteExample1</van-button>
 
     <div @click="routerReplace()">显示自定义Toast</div>
     <div class="test"><span>1</span><span>2</span></div>
