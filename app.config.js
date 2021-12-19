@@ -19,13 +19,13 @@ const appConfig = {
     },
     // 测试环境
     test: {
-      link: ["https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css"],
-      script: ["https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.js"]
+      link: [],
+      script: []
     },
     // 生产环境
     production: {
-      link: ["https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css"],
-      script: ["https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.js"]
+      link: [],
+      script: []
     },
     // 公共环境加载
     common: {

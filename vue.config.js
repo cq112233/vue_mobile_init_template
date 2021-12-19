@@ -2,6 +2,8 @@ const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const WebpackBar = require("webpackbar");
+const webpack = require("webpack");
+const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const vantTheme = path.resolve(__dirname, "./src/assets/theme/index.less");
 const isProduction = process.env.NODE_ENV === "production";
 const appConfig = require("./app.config.js");
@@ -104,8 +106,8 @@ module.exports = {
     // html 模板变量操作  hbs模板好用
     config.plugin("html").tap(args => {
       args[0].cdn = mergeObj(
-        appConfig.cdn&&appConfig.cdn[process.env.NODE_ENV],
-        appConfig.cdn&&appConfig.cdn.common
+        appConfig.cdn && appConfig.cdn[process.env.NODE_ENV],
+        appConfig.cdn && appConfig.cdn.common
       );
       return args;
     });
@@ -115,28 +117,28 @@ module.exports = {
   configureWebpack: config => {
     if (isProduction) {
       // 开启分离js
-      config.optimization = {
-        runtimeChunk: "single",
-        splitChunks: {
-          chunks: "all",
-          maxInitialRequests: Infinity,
-          minSize: 20000,
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name(module) {
-                // get the name. E.g. node_modules/packageName/not/this/part.js
-                // or node_modules/packageName
-                const packageName = module.context.match(
-                  /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-                )[1];
-                // npm package names are URL-safe, but some servers don't like @ symbols
-                return `npm.${packageName.replace("@", "")}`;
-              }
-            }
-          }
-        }
-      };
+      // config.optimization = {
+      //   runtimeChunk: "single",
+      //   splitChunks: {
+      //     chunks: "all",
+      //     maxInitialRequests: Infinity,
+      //     minSize: 20000,
+      //     cacheGroups: {
+      //       vendor: {
+      //         test: /[\\/]node_modules[\\/]/,
+      //         name(module) {
+      //           // get the name. E.g. node_modules/packageName/not/this/part.js
+      //           // or node_modules/packageName
+      //           const packageName = module.context.match(
+      //             /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+      //           )[1];
+      //           // npm package names are URL-safe, but some servers don't like @ symbols
+      //           return `npm.${packageName.replace("@", "")}`;
+      //         }
+      //       }
+      //     }
+      //   }
+      // };
     }
     if (isProduction) {
       config.plugins.push(
@@ -156,19 +158,35 @@ module.exports = {
     }
     if (isProduction) {
       config.plugins.push(
-        new CompressionWebpackPlugin({
-          filename: "[path].gz[query]", // 压缩后的文件名(保持原文件名，后缀加.gz)
-          algorithm: "gzip", // 使用gzip压缩
-          test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"), // 匹配文件名
-          threshold: 10240, // 对超过10k的数据压缩
-          minRatio: 0.8 // 压缩率小于0.8才会压缩
-        })
+        ...[
+          new CompressionWebpackPlugin({
+            filename: "[path].gz[query]", // 压缩后的文件名(保持原文件名，后缀加.gz)
+            algorithm: "gzip", // 使用gzip压缩
+            test: new RegExp(
+              "\\.(" + productionGzipExtensions.join("|") + ")$"
+            ), // 匹配文件名
+            threshold: 10240, // 对超过10k的数据压缩
+            minRatio: 0.8 // 压缩率小于0.8才会压缩
+          }),
+        ]
       );
     }
+
     config.plugins.push(
       ...[
         // 添加 进度条
-        new WebpackBar()
+        new WebpackBar(),
+        new webpack.DllReferencePlugin({
+          manifest: path.resolve(__dirname,'public/dll/vue.json')
+        }),
+        //这个主要是将生成的vendor.dll.js文件加上hash值插入到页面中。
+        new AddAssetHtmlPlugin([
+          {
+            filepath: path.resolve(__dirname, "public/dll/vue.js"),
+            includeSourcemap: false,
+            hash: true
+          }
+        ])
       ]
     );
 
