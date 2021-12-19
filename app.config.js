@@ -41,12 +41,12 @@ const appConfig = {
         // "https://unpkg.com/@better-scroll/core@latest/dist/core.min.js"
       ]
     }
-  }, // cdn资源目录   自动cdn引入
+  }, // cdn资源目录   html自动cdn引入
   initThemeColor: "red", // 初始化主题颜色  defualt red blue green orange,
   isOpenAsyncRoutes: true, // 开启动态路由权限
   isShowKeFu: false, // 是否显示客服
   isNprogress: true, // 是否展示顶部进度条
-  isBetterScroll: false // 是否开启布局页的betterScroll\
+  isBetterScroll: false // 是否开启布局页的betterScroll
 };
 
 module.exports = appConfig;
