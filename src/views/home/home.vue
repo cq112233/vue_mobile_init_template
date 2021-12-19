@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>欢迎吴灿峰</h1>
     <van-button to="/page/lang">切换语言</van-button>
     <van-button :to="{ name: 'changeTheme' }">切换主题</van-button>
 
