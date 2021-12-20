@@ -87,6 +87,7 @@ css样式: xxx-yyy
 | assets        | 初始化样式及全局样式  图片 字体 字体图标库  国际化语言包  主题颜色 | 
 | components    | 通用组件 项目组件                                      | 
 | directives    | 自定义指令集                                           |
+| echarts       | echarts                                           |
 | enums         | 枚举                                                 |
 | env           | 生产环境不用nginx 做反向代理 后端解决同源政策问题       | 
 | filters       | 自定义过滤器                                          | 

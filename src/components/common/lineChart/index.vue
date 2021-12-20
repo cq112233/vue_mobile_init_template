@@ -251,6 +251,7 @@ export default {
         ]
       }
       this.myChart = echarts.init(this.$refs.main)
+      window.onresize = this.myChart.resize
     }
   }
 }

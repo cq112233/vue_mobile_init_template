@@ -9,7 +9,7 @@ const vantTheme = path.resolve(__dirname, './src/assets/theme/index.less')
 const isDev = process.env.NODE_ENV === 'development' // 是否是生产环境或测试环境
 const appConfig = require('./app.config.js')
 const productionGzipExtensions = ['js', 'css'] // 压缩的文件类型
-
+console.log('~~开始打包咯😁,请耐心等待~~')
 // 合并对象属性
 function mergeObj(obj1, obj2) {
   if (!obj2) {
@@ -211,7 +211,7 @@ module.exports = {
 
       ]
     )
-    console.log(process.env.analyz, '11122')
+
     if (process.env.NODE_ENV === 'production' && process.env.analyz === 'analyz') {
       config.plugins.push(
         new BundleAnalyzerPlugin(
