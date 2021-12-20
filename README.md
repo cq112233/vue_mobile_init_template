@@ -113,7 +113,8 @@ css样式: xxx-yyy
 | public             | 静态资源                                         | 
 | app.config.js      | app基本配置                                         | 
 | plopfile.js        | plop命令入口 | 
-
+| pm2.config.json    | nodeJS 启动 |
+| tsconfig.json      | ts配置      |
 
 ### 打标签 tag 项目重要节点
 
