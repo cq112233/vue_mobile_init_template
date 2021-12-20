@@ -2,14 +2,14 @@
 @params App通用配置
 */
 const appConfig = {
-  version: "1.0.0", // app 版本号
+  version: '1.0.0', // app 版本号
   routerWhiteLists: [
-    "/layout/home",
-    "/layout/user",
-    "/layout/star",
-    "/layout/buy",
-    "/page/defaultPage",
-    "/page/defaultLayout"
+    '/layout/home',
+    '/layout/user',
+    '/layout/star',
+    '/layout/buy',
+    '/page/defaultPage',
+    '/page/defaultLayout'
   ], // 未登入  路由白名单
   cdn: {
     // 开发环境
@@ -42,18 +42,18 @@ const appConfig = {
       ]
     }
   }, // cdn资源目录   html自动cdn引入
-  dll:[
-    "vue",
-    "vant",
-    "axios",
-    "vue-i18n" 
-  ],//这里是需要缓存的模块和插件
-  isOpenDll:false, // 是否开启dll 缓存
-  initThemeColor: "red", // 初始化主题颜色  defualt red blue green orange,
+  dll: [
+    'vue',
+    'vant',
+    'axios',
+    'vue-i18n'
+  ], // 这里是需要缓存的模块和插件
+  isOpenDll: false, // 是否开启dll 缓存  上面的dll 数组依赖这个开关 (npm run dll 也依赖这个开关)  true 一定要先执行一次 npm run dll 不然开发环境启动不起来
+  initThemeColor: 'red', // 初始化主题颜色  defualt red blue green orange,
   isOpenAsyncRoutes: true, // 开启动态路由权限
   isShowKeFu: false, // 是否显示客服
   isNprogress: true, // 是否展示顶部进度条
   isBetterScroll: false // 是否开启布局页的betterScroll
-};
+}
 
-module.exports = appConfig;
+module.exports = appConfig

@@ -10,6 +10,7 @@
     <div class="test"><span>1</span><span>2</span></div>
     <i class="icon icon-shoucang1"></i>
     <div :style="{ color: themeColor }">12333</div>
+    <lineChart />
     <Test />
     <calendar />
   </div>
@@ -19,6 +20,7 @@
 import { getJson } from '@/apis'
 import commonMixin from '@/utils/mixin'
 import Test from 'Test'
+import lineChart from 'lineChart'
 import calendar from 'calendar'
 export default {
   name: 'home',
@@ -29,7 +31,8 @@ export default {
   },
   components: {
     Test,
-    calendar
+    calendar,
+    lineChart
   },
   mounted() {},
   onShow() {

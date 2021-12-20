@@ -6,12 +6,13 @@
   "description": "a vue mobile project",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build:test": "vue-cli-service build --mode test",
     "build:prod": "vue-cli-service build",
     "create page": "plop page",
     "create component": "plop component",
     "create layout": "plop layout",
+    "analyz": "NODE_ENV=production analyz=analyz npm_config_report=true npm run build:prod",
     "dll": "rimraf public/dll && webpack --config webpack.dll.js",
     "lint": "vue-cli-service lint"
   },
@@ -23,7 +24,6 @@
     "echarts": "^5.2.1",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "vant": "^2.12.36",
@@ -65,6 +65,7 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-cli-plugin-style-resources-loader": "^0.1.4",
     "vue-template-compiler": "^2.6.14",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
     "webpackbar": "^5.0.2"
   }

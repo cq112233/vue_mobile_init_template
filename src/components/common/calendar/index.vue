@@ -49,8 +49,6 @@
 
 <script>
 import mixin from '@/utils/mixin'
-// import moment from 'moment'
-// import { weekLists } from '@/utils/timeUtils'
 export default {
   name: 'CalendarCard',
   mixins: [mixin],
@@ -92,7 +90,7 @@ export default {
       const MonthNumber = this.getMonthNumber(time)
       const tempDateList = []
       for (let index = 1; index <= MonthNumber; index++) {
-        const weekNameIndex = this.getDate(index, time).weekday()
+        const weekNameIndex = this.getTimeInWeekdayNumber(this.getDate(index, time))
         const weekName = this.getTimeInWeekday(this.getDate(index, time))
         const obj = {
           weekName, // 周日
@@ -104,9 +102,10 @@ export default {
         }
         tempDateList.push(obj)
       }
-      const fisrtLength = tempDateList[0].weekNameIndex + 1
+      const fisrtLength = tempDateList[0].weekNameIndex
+      console.log(tempDateList[0].weekNameIndex, 111)
       const lastLength = tempDateList[tempDateList.length - 1].weekNameIndex
-      if (tempDateList[0].weekNameIndex !== 6) {
+      if (tempDateList[0].weekNameIndex !== 0) {
         for (let index = 0; index < fisrtLength; index++) {
           const obj = {
             weekName: '',
@@ -116,17 +115,8 @@ export default {
           tempDateList.unshift(obj)
         }
       }
-      if (lastLength === 6) {
-        for (let index = 0; index < lastLength; index++) {
-          const obj = {
-            weekName: '',
-            dateNumber: '',
-            weekNameIndex: ''
-          }
-          tempDateList.push(obj)
-        }
-      } else {
-        for (let index = 0; index < 5 - lastLength; index++) {
+      if (lastLength !== 6) {
+        for (let index = 0; index < 6 - lastLength; index++) {
           const obj = {
             weekName: '',
             dateNumber: '',

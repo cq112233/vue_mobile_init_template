@@ -1,10 +1,33 @@
-# 欢迎使用  vue_mobile_init_template [码云地址](https://gitee.com/htwoO-cq/vue_mobile_init_template) 
-
 ## h5-app 基本使用说明
 
-### 动态路由 尽量不要用name跳转 生产环境有问题
-
 ### [预览示例](http://121.196.173.85)
+
+#### 先执行
+```
+cnmp i 
+```
+#### 启动开发服务
+```
+npm run serve 
+```
+#### 打包测试环境
+```
+npm run build:test 
+```
+#### 打包生产环境
+```
+npm run build:prod 
+```
+#### 查看分析生产环境打包各依赖包文件大小
+```
+npm run analyz 
+```
+#### 开启dll 加快开发服打包速度 (app.config.js 配置)
+```
+npm run dll 
+```
+
+### 动态路由 尽量不要用name跳转 生产环境有问题
 
 ### 查看webpack配置
 ```
