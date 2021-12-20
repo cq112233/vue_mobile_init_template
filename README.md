@@ -4,6 +4,8 @@
 
 ### 动态路由 尽量不要用name跳转 生产环境有问题
 
+### [预览示例](http://121.196.173.85)
+
 ### 查看webpack配置
 ```
 开发环境：npx vue-cli-service inspect --mode development >> webpack.config.development.js
@@ -22,7 +24,7 @@
 plop page
 ```
 
-### 创建组件 (通过plop,直接可以通过 import 'Test' from 'Test' 直接导入组件 )
+### 创建组件 (通过plop创建的组件,在页面中可以直接通过 import 'Test' from 'Test' 直接导入组件 )
 
 ```
 plop component
@@ -96,7 +98,7 @@ css样式: xxx-yyy
 ```
 git tag v0.0.1
 git push origin v0.0.1
-git tag -d V0.0.1
+git tag -d v0.0.1
 ```
 
 
