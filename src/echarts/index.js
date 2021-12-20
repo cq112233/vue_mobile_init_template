@@ -29,4 +29,3 @@ echarts.use([
 ])
 
 window.echarts = echarts
-window.onresize = echarts.resize
