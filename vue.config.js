@@ -5,7 +5,7 @@ const WebpackBar = require("webpackbar");
 const webpack = require("webpack");
 const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const vantTheme = path.resolve(__dirname, "./src/assets/theme/index.less");
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "production"; // 是否是生产环境
 const appConfig = require("./app.config.js");
 const productionGzipExtensions = ["js", "css"]; //压缩的文件类型
 
@@ -48,18 +48,18 @@ module.exports = {
             remUnit: 75, // 根据设计图
             // 375的图就给37.5，也就是1rem=37.5px
             // 如果不想px装rem  可以使用 "PX"或者"Px"
-            exclude: /node_modules|init.css/i
-          })
-        ]
-      }
-    }
+            exclude: /node_modules|init.css/i,
+          }),
+        ],
+      },
+    },
   },
   // 全局引入 less 变量配置
   pluginOptions: {
     "style-resources-loader": {
       preProcessor: "less",
-      patterns: [path.resolve(__dirname, `${vantTheme}`)]
-    }
+      patterns: [path.resolve(__dirname, `${vantTheme}`)],
+    },
   },
   devServer: {
     // hot: true,
@@ -71,22 +71,22 @@ module.exports = {
         // 如果是https接口，需要配置这个参数
         changeOrigin: true, // 是否跨域
         pathRewrite: {
-          "^/api": "/"
-        }
+          "^/api": "/",
+        },
       },
       "/gateway": {
         target: "http://newapi.zhihuishitang.net",
-        changeOrigin: true
+        changeOrigin: true,
       },
       "/report": {
         // target: 'http://192.168.1.181:8302',
         target: "https://test-api-report.zhihuishitang.net",
-        changeOrigin: true
+        changeOrigin: true,
       },
       "/attendance": {
         target: "http://192.168.1.235:8500",
-        changeOrigin: true
-      }
+        changeOrigin: true,
+      },
     },
     //静态资源目录
     contentBase: "./public",
@@ -97,20 +97,21 @@ module.exports = {
     //热更新，不需要刷新浏览器 大大提高开发速度    hot 跟 hotOnly  hotOnly 热替换失败不会自动刷新便于找到问题
     hotOnly: true,
     //开启
-    open: false
+    open: false,
   },
   // 在生产环境下为 Babel 和 TypeScript 使用 `thread-loader`
   // 在多核机器下会默认开启。
   parallel: require("os").cpus().length > 1,
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     // html 模板变量操作  hbs模板好用
-    config.plugin("html").tap(args => {
+    config.plugin("html").tap((args) => {
       args[0].cdn = mergeObj(
         appConfig.cdn && appConfig.cdn[process.env.NODE_ENV],
         appConfig.cdn && appConfig.cdn.common
       );
       return args;
     });
+    // 压缩图片
     config.module
       .rule("images")
       .use("image-webpack-loader")
@@ -120,58 +121,55 @@ module.exports = {
         mozjpeg: { progressive: true, quality: 65 }, // Compress JPEG images
         optipng: { enabled: false }, // Compress PNG images
         pngquant: { quality: [0.65, 0.9], speed: 4 }, // Compress PNG images
-        gifsicle: { interlaced: false } // Compress SVG images
+        gifsicle: { interlaced: false }, // Compress SVG images
         //					webp: { quality: 75 }
       })
       .end();
     // 修复HMR
     config.resolve.symlinks(true);
   },
-  configureWebpack: config => {
-    if (isProduction) {
+  configureWebpack: (config) => {
+    if (!isProduction) {
       // 开启分离js
-      // config.optimization = {
-      //   runtimeChunk: "single",
-      //   splitChunks: {
-      //     chunks: "all",
-      //     maxInitialRequests: Infinity,
-      //     minSize: 20000,
-      //     cacheGroups: {
-      //       vendor: {
-      //         test: /[\\/]node_modules[\\/]/,
-      //         name(module) {
-      //           // get the name. E.g. node_modules/packageName/not/this/part.js
-      //           // or node_modules/packageName
-      //           const packageName = module.context.match(
-      //             /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-      //           )[1];
-      //           // npm package names are URL-safe, but some servers don't like @ symbols
-      //           return `npm.${packageName.replace("@", "")}`;
-      //         }
-      //       }
-      //     }
-      //   }
-      // };
+      config.optimization = {
+        runtimeChunk: "single",
+        splitChunks: {
+          chunks: "all",
+          maxInitialRequests: Infinity,
+          minSize: 20000,
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name(module) {
+                // get the name. E.g. node_modules/packageName/not/this/part.js
+                // or node_modules/packageName
+                const packageName = module.context.match(
+                  /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                )[1];
+                // npm package names are URL-safe, but some servers don't like @ symbols
+                return `npm.${packageName.replace("@", "")}`;
+              },
+            },
+          },
+        },
+      };
     }
     if (isProduction) {
       config.plugins.push(
         //生产环境自动删除console
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            warnings: false,
-            compress: {
-              drop_debugger: true,
-              drop_console: true
-            }
-          },
-          sourceMap: false,
-          parallel: true
-        })
-      );
-    }
-    if (isProduction) {
-      config.plugins.push(
         ...[
+          new UglifyJsPlugin({
+            uglifyOptions: {
+              warnings: false,
+              compress: {
+                drop_debugger: true,
+                drop_console: true,
+              },
+            },
+            sourceMap: false,
+            parallel: true,
+          }),
+          // gizp 在前端压缩,减少服务端压力
           new CompressionWebpackPlugin({
             filename: "[path].gz[query]", // 压缩后的文件名(保持原文件名，后缀加.gz)
             algorithm: "gzip", // 使用gzip压缩
@@ -179,32 +177,36 @@ module.exports = {
               "\\.(" + productionGzipExtensions.join("|") + ")$"
             ), // 匹配文件名
             threshold: 10240, // 对超过10k的数据压缩
-            minRatio: 0.8 // 压缩率小于0.8才会压缩
-          })
+            minRatio: 0.8, // 压缩率小于0.8才会压缩
+          }),
         ]
       );
     }
+    // 开启了dll
     if (appConfig.isOpenDll) {
       config.plugins.push(
         ...[
           new webpack.DllReferencePlugin({
-            manifest: path.resolve(__dirname, "public/dll/vendor-manifest.json")
+            manifest: path.resolve(
+              __dirname,
+              "public/dll/vendor-manifest.json"
+            ),
           }),
           //这个主要是将生成的vendor.dll.js文件加上hash值插入到页面中。
           new AddAssetHtmlPlugin([
             {
               filepath: path.resolve(__dirname, "public/dll/vendor.dll.js"),
               includeSourcemap: false,
-              hash: true
-            }
-          ])
+              hash: true,
+            },
+          ]),
         ]
       );
     }
     config.plugins.push(
       ...[
         // 添加 进度条
-        new WebpackBar()
+        new WebpackBar(),
       ]
     );
     // 源代码跟踪
@@ -212,17 +214,17 @@ module.exports = {
     return {
       resolve: {
         alias: {
-          "~": path.resolve(__dirname)
+          "~": path.resolve(__dirname),
         },
         extensions: [".ts", ".tsx", ".js", ".json", ".vue", ".css", ".less"],
         modules: [
           "node_modules",
           path.resolve(__dirname, "src/components/common"),
-          path.resolve(__dirname, "src/components/project")
-        ]
+          path.resolve(__dirname, "src/components/project"),
+        ],
       },
       module: {
-        rules: [{ test: /\.ts$/, loader: "ts-loader" }]
+        rules: [{ test: /\.ts$/, loader: "ts-loader" }],
       },
       // 使用cdn 加载 web将不打包   用dll 处理node_moodle 中的模块
       externals: {
@@ -230,7 +232,7 @@ module.exports = {
         // vant: 'vant',
         // axios: 'axios',
         // 'vue-i18n': 'VueI18n'
-      }
+      },
     };
-  }
+  },
 };

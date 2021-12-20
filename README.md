@@ -2,6 +2,8 @@
 
 ## h5-app 基本使用说明
 
+### 动态路由 尽量不要用name跳转 生产环境有问题
+
 ### 查看webpack配置
 ```
 开发环境：npx vue-cli-service inspect --mode development >> webpack.config.development.js
@@ -36,7 +38,7 @@ plop layout
 ### 命名规范
 
 ```
-类: XxxYyy
+类,枚举: XxxYyy
 常量: XXX_YYY
 组件,page,layout,方法,变量: xxxYyy
 css样式: xxx-yyy
@@ -49,6 +51,7 @@ css样式: xxx-yyy
 通过plop 自动化工具创建页面都会混入 这里代理了一些方法，减少不必要的代码量
 ```
 
+### ==必看== app.config
 
 
 ### 项目src开发目录
