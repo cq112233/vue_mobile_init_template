@@ -130,7 +130,8 @@ module.exports = {
     config.resolve.symlinks(true)
   },
   configureWebpack: (config) => {
-    if (!isDev) {
+    if (!isDev && !appConfig.isOpenDll) {
+      // console.log('你先运行了 npm run dll 了🐴 ? ')
       // 开启分离js
       config.optimization = {
         runtimeChunk: 'single',

@@ -2,7 +2,7 @@
   <div class="layout">
     <!-- 布局页 -->
     <div class="wrapper">
-      <app-mains></app-mains>
+      <app-mains ref="appMains"></app-mains>
     </div>
     <tab-bars></tab-bars>
   </div>
@@ -17,7 +17,16 @@ export default {
   components: {
     AppMains,
     TabBars
-  }
+  },
+  mounted() {
+    console.log(this.$refs.appMains.$children[0])
+  },
+  computed: {
+    key() {
+      return this.$route.fullPath
+    }
+  },
+  methods: {}
 }
 </script>
 

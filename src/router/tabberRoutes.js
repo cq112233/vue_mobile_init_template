@@ -22,7 +22,8 @@ export default [
         name: 'buy',
         meta: {
           title: 'buy',
-          keepAlive: true
+          keepAlive: true,
+          enablePullDownRefresh: true
         },
         component: () => import(/* webpackChunkName: "buy" */ '../views/buy/buy.vue')
       },
@@ -49,7 +50,8 @@ export default [
         name: 'home',
         meta: {
           title: '首页',
-          keepAlive: true
+          keepAlive: true,
+          enablePullDownRefresh: true
         },
         component: Home
       }

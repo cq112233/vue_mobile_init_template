@@ -43,10 +43,19 @@ const appConfig = {
     }
   }, // cdn资源目录   html自动cdn引入
   dll: [
-    'vue',
-    'vant',
+    '@better-scroll/core',
     'axios',
-    'vue-i18n'
+    'better-scroll',
+    'dayjs',
+    'echarts',
+    'lib-flexible',
+    'lodash',
+    'nprogress',
+    'vant',
+    'vue',
+    'vue-i18n',
+    'vue-router',
+    'vuex'
   ], // 这里是需要缓存的模块和插件
   isOpenDll: false, // 是否开启dll 缓存  上面的dll 数组依赖这个开关 (npm run dll 也依赖这个开关)  true 一定要先执行一次 npm run dll 不然开发环境启动不起来
   initThemeColor: 'red', // 初始化主题颜色  defualt red blue green orange,

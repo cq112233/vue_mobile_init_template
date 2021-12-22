@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ text }}
     <van-button to="/page/lang">切换语言</van-button>
     <van-button :to="{ path: '/page/changeTheme' }">切换主题</van-button>
 
@@ -27,7 +28,9 @@ export default {
   inject: ['root'],
   mixins: [commonMixin],
   data() {
-    return {}
+    return {
+      text: ''
+    }
   },
   components: {
     Test,
@@ -40,6 +43,14 @@ export default {
   },
   beforeDestroy() {},
   deactivated() {},
+  onPullDownRefresh(done) {
+    console.log('home 下拉')
+    setTimeout(() => {
+      console.log(this, '结束')
+      this.text = 111
+      done()
+    }, 5000)
+  },
   methods: {
     showToast() {
       this.$cqToast.success('成功')

@@ -20,7 +20,14 @@ const customMixin = {
   destroyed() {
     this.$options.onUnload && this.$options.onUnload.call(this)
   },
+  // 下拉刷新
+  onPullDownRefresh() {
 
+  },
+  // 清除定时器
+  beforeRouteLeave(t0, from, next) {
+    next()
+  },
   methods: {
     // 工具方法挂载vue实例中
     ...totalUtils,

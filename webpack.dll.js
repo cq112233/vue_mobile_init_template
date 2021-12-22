@@ -4,6 +4,8 @@ const appConfig = require('./app.config.js')
 let dll = []
 if (appConfig.isOpenDll) {
   dll = appConfig.dll
+} else {
+  throw new Error('请将app.config.js中isOpenDll设置为true😺')
 }
 module.exports = {
   entry: {
