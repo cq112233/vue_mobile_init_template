@@ -1,4 +1,4 @@
-import Page from '@/page'
+import Layout from '@/layout'
 export default [
   // 无tabber 页面
   {
@@ -11,7 +11,7 @@ export default [
       // 主要判断from.path
       next()
     },
-    component: Page,
+    component: Layout,
     children: [
       // 魔法注释勿删 ⬇️
       /** plop view page router **/

@@ -6,7 +6,7 @@
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
-    />
+    ></van-nav-bar>
   </div>
 </template>
 

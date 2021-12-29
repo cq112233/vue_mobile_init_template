@@ -19,7 +19,7 @@
 
 <script>
 import { SET_LANG } from '@/store/modules/app'
-import { vantLocales } from '@/i18n'
+import { vantLocales } from '@/plugins/i18n'
 import commonMixin from '@/utils/mixin'
 export default {
   name: 'lang',

@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!-- 下拉刷新 -->
-    <downRefresh
-      v-if="$route.meta.enablePullDownRefresh"
-      @refresh="refresh"
-      ref="downRefresh"
-      :key="key"
-    />
     <keep-alive :include="keepAliveLayoutList">
       <router-view :key="key" ref="router"></router-view>
     </keep-alive>
@@ -15,11 +8,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import downRefresh from 'downRefresh'
 export default {
-  components: {
-    downRefresh
-  },
+  components: {},
   computed: {
     ...mapState({
       keepAliveLayoutList: (state) => state.permission.keepAliveLayoutList

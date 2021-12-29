@@ -1,7 +1,7 @@
-import Page from '@/page'
+import Layout from '@/layout'
 const asyncRoutes = [{
   path: '/page',
-  component: Page,
+  component: Layout,
   meta: {
     title: 'page',
     keepAlive: true

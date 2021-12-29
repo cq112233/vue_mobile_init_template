@@ -1,22 +1,24 @@
 <template>
   <div class="layout">
     <!-- 布局页 -->
+    <nav-bars v-if="$route.fullPath.includes('page')"></nav-bars>
+    <tab-bars v-else></tab-bars>
     <div class="wrapper">
       <app-mains ref="appMains"></app-mains>
     </div>
-    <tab-bars></tab-bars>
   </div>
 </template>
 
 <script>
-import { AppMains, TabBars } from './components'
+import { AppMains, TabBars, NavBars } from './components'
 import config from '~/app.config'
 import mixin from './mixin'
 export default {
   mixins: [config.isBetterScroll ? mixin : {}],
   components: {
     AppMains,
-    TabBars
+    TabBars,
+    NavBars
   },
   mounted() {
     console.log(this.$refs.appMains.$children[0])
