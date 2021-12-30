@@ -17,6 +17,8 @@ import './components/project' // 自动注册全局项目组件
 import './components/toast/index' // 自定义Toast
 import './plugins/echarts' // 按需加载echart
 import './plugins/vant'// 全局按需引入vant
+import './plugins/vueScroller'// 全局按需引入vant
+
 // import './plugins/webSocket' // 自定义ws连接器
 
 if (process.env.NODE_ENV !== 'production') {

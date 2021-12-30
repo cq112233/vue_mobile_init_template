@@ -39,17 +39,21 @@ export default {
     lineChart
   },
   mounted() {},
-  onShow() {},
   beforeDestroy() {},
   deactivated() {},
+  onShow() {},
+  // 下拉刷新
   onPullDownRefresh(done) {
-    console.log('home 下拉')
     setTimeout(() => {
       console.log(this, '结束')
       this.text = 111
       done()
     }, 5000)
   },
+  // 页面滚动
+  onPageScroll() {},
+  // 触底
+  onReachBottom() {},
   methods: {
     getTop() {
       console.log(document.body.scrollTop, 'top')

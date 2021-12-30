@@ -7,7 +7,6 @@ const arrComponents = []
 arrComponents.push(
   // 魔法注释勿删 ⬇️
   /** plop import common compontent name **/
-
 )
 
 const components = {

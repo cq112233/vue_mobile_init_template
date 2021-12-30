@@ -2,10 +2,12 @@
   <div class="layout">
     <!-- 布局页 -->
     <nav-bars v-if="$route.fullPath.includes('page')"></nav-bars>
-    <tab-bars v-else></tab-bars>
+
     <div :class="{ wrapper: !$route.fullPath.includes('page') }">
       <app-mains ref="appMains"></app-mains>
     </div>
+
+    <tab-bars v-if="!$route.fullPath.includes('page')"></tab-bars>
   </div>
 </template>
 
@@ -25,6 +27,11 @@ export default {
     key() {
       return this.$route.fullPath
     }
+  },
+  // 清除定时器
+  beforeRouteLeave(to, from, next) {
+    // 只有keepAlive 的 保持滚动状态
+    next()
   },
   methods: {}
 }
