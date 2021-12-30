@@ -1,5 +1,5 @@
 import Layout from '@/layout'
-import Home from '@/views/home/home.vue'
+import Home from '@/views/home/home'
 export default [
   // 有tabber页面
   {
