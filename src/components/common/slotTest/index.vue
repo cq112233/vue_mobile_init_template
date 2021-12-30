@@ -1,6 +1,6 @@
 <template>
   <div class="slotTest">
-    <slot name='header' :prop='user'>
+    <slot name="header" :prop="user">
       <p>lisi</p>
     </slot>
   </div>
@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'slotTest',
-  data () {
+  data() {
     return {
       user: {
         name: 'zhangsan',
@@ -17,14 +17,13 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     console.log(this.$slots, 'slots')
   }
 }
 </script>
 
 <style lang="less" scoped>
-  .slotTest {
-
-  }
+.slotTest {
+}
 </style>

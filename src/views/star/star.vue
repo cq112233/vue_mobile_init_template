@@ -1,5 +1,5 @@
 <template>
-  <div class="star"></div>
+  <div class="star">xxx</div>
 </template>
 
 <script>
@@ -15,5 +15,7 @@ export default {
 
 <style lang="less" scoped>
 .star {
+  height: 1800px;
+  background: #ccc;
 }
 </style>

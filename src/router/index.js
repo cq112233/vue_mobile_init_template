@@ -81,9 +81,11 @@ store.dispatch(SET_KEEPALIVELIST, { routes: getKeepAliveRouterGenerator(tabberRo
 store.dispatch(SET_KEEPALIVELIST, { routes: getKeepAliveRouterGenerator(commonRoutes), type: KeepAliveStatus.common })
 
 const createRouter = () => new VueRouter({
-  mode: 'hash', // history,hash 模式  hash模式兼容性高
+  mode: 'history', // history,hash 模式  hash模式兼容性高
   base: process.env.BASE_URL, // 基础路径
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior(to, from, savedPosition) {
+    document.body.scrollTop = to.meta.savedPosition || 0
+  },
   routes // 路由集
 })
 

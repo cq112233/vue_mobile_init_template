@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <!-- 根组件 -->
-    <router-view />
+    <keep-alive :include="['404']">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -19,18 +21,11 @@ export default {
 
   watch: {},
   computed: {},
-  mounted() {
-    console.log(1)
-  },
+  mounted() {},
   methods: {}
 }
 </script>
 <style lang="less" scoped>
-#app {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 .backTopArrow {
   right: 20px;
   bottom: 500px;

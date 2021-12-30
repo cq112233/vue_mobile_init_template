@@ -25,7 +25,11 @@ const customMixin = {
 
   },
   // 清除定时器
-  beforeRouteLeave(t0, from, next) {
+  beforeRouteLeave(to, from, next) {
+    // 只有keepAlive 的 保持滚动状态
+    if (from.meta.keepAlive) {
+      from.meta.savedPosition = document.body.scrollTop
+    }
     next()
   },
   methods: {

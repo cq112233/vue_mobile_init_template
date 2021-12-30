@@ -8,6 +8,7 @@
     <van-button :to="{ path: '/page/asyncRouteExample1' }">asyncRouteExample1</van-button>
 
     <div @click="routerReplace()">显示自定义Toast</div>
+    <van-button @click="getTop">获取top</van-button>
     <div class="test"><span>1</span><span>2</span></div>
     <i class="icon icon-shoucang1"></i>
     <div :style="{ color: themeColor }">12333</div>
@@ -38,9 +39,7 @@ export default {
     lineChart
   },
   mounted() {},
-  onShow() {
-    console.log(this, 'onShow')
-  },
+  onShow() {},
   beforeDestroy() {},
   deactivated() {},
   onPullDownRefresh(done) {
@@ -52,6 +51,9 @@ export default {
     }, 5000)
   },
   methods: {
+    getTop() {
+      console.log(document.body.scrollTop, 'top')
+    },
     showToast() {
       this.$cqToast.success('成功')
       setTimeout(() => {

@@ -5,8 +5,8 @@ export default [
   {
     path: '/layout',
     meta: {
-      title: 'index'
-      // keepAlive: true
+      title: 'index',
+      keepAlive: true
     },
     redirect: '/layout/index',
     // beforeEnter: (to, from, next) => {
@@ -50,7 +50,7 @@ export default [
         name: 'home',
         meta: {
           title: '首页',
-          keepAlive: true,
+          keepAlive: false,
           enablePullDownRefresh: true
         },
         component: Home

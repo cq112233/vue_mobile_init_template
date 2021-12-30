@@ -17,71 +17,69 @@
  * v-model 对当前值进行双向绑定实时显示拖拽进度
  * */
 export default {
-  name: "SliderCard",
-  props: ["min", "max", "value"],
+  name: 'SliderCard',
+  props: ['min', 'max', 'value'],
   data() {
     return {
-      slider: null, //滚动条DOM元素
-      thunk: null, //拖拽DOM元素
-      per: this.value //当前值
-    };
+      slider: null, // 滚动条DOM元素
+      thunk: null, // 拖拽DOM元素
+      per: this.value // 当前值
+    }
   },
-  //渲染到页面的时候
+  // 渲染到页面的时候
   mounted() {
-    this.slider = this.$refs.slider;
-    this.thunk = this.$refs.trunk;
-    var _this = this;
+    this.slider = this.$refs.slider
+    this.thunk = this.$refs.trunk
+    var _this = this
     this.thunk.ontouchstart = this.thunk.onmousedown = function (e) {
-      var width = parseInt(_this.width);
-      var disX = e.touches ? e.touches[0].clientX : e.clientX;
+      var width = parseInt(_this.width)
+      var disX = e.touches ? e.touches[0].clientX : e.clientX
       document.ontouchmove = document.onmousemove = function (e) {
         // value, left, width
         // 当value变化的时候，会通过计算属性修改left，width
 
         // 拖拽的时候获取的新width
-        var newWidth = e.touches
-          ? e.touches[0].clientX
-          : e.clientX - disX + width;
+        var newWidth = e.touches ? e.touches[0].clientX : e.clientX - disX + width
         // 拖拽的时候得到新的百分比
-        var scale = newWidth / _this.slider.offsetWidth;
-        console.log(scale);
-        _this.per = ((_this.max - _this.min) * scale + _this.min).toFixed(0);
-        _this.per = Math.max(_this.per, _this.min);
-        _this.per = Math.min(_this.per, _this.max);
-      };
+        var scale = newWidth / _this.slider.offsetWidth
+        console.log(scale)
+        _this.per = ((_this.max - _this.min) * scale + _this.min).toFixed(0)
+        _this.per = Math.max(_this.per, _this.min)
+        _this.per = Math.min(_this.per, _this.max)
+      }
       document.ontouchend = document.onmouseup = function () {
-        document.ontouchmove = document.ontouchend = document.onmousemove = document.onmouseup = null;
-      };
-      return false;
-    };
+        document.ontouchmove =
+          document.ontouchend =
+          document.onmousemove =
+          document.onmouseup =
+            null
+      }
+      return false
+    }
   },
   computed: {
     // 设置一个百分比，提供计算slider进度宽度和trunk的left值
     // 对应公式为 当前值-最小值/最大值-最小值 = slider进度width / slider总width
     // trunk left = slider进度width + trunk宽度/2
     scale() {
-      return (this.per - this.min) / (this.max - this.min);
+      return (this.per - this.min) / (this.max - this.min)
     },
     width() {
       if (this.slider) {
-        return this.slider.offsetWidth * this.scale + "px";
+        return this.slider.offsetWidth * this.scale + 'px'
       } else {
-        return 0 + "px";
+        return 0 + 'px'
       }
     },
     left() {
       if (this.slider) {
-        return (
-          this.slider.offsetWidth * this.scale -
-          this.thunk.offsetWidth / 2 +
-          "px"
-        );
+        return this.slider.offsetWidth * this.scale - this.thunk.offsetWidth / 2 + 'px'
       } else {
-        return 0 + "px";
+        return 0 + 'px'
       }
     }
   }
-};
+}
 </script>
 <style>
 .slider {

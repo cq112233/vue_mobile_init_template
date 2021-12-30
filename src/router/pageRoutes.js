@@ -55,6 +55,7 @@ export default [
         component: () =>
           import(/* webpackChunkName: "login" */ '../views/login/login.vue')
       }
+
     ]
   }
 ]

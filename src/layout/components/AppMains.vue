@@ -1,6 +1,6 @@
 <template>
   <div>
-    <keep-alive :include="keepAliveLayoutList">
+    <keep-alive :include="keepAlivePages">
       <router-view :key="key" ref="router"></router-view>
     </keep-alive>
   </div>
@@ -12,8 +12,16 @@ export default {
   components: {},
   computed: {
     ...mapState({
-      keepAliveLayoutList: (state) => state.permission.keepAliveLayoutList
+      keepAliveLayoutList: (state) => state.permission.keepAliveLayoutList,
+      keepAlivePageList: (state) => state.permission.keepAlivePageList,
+      keepAliveAsyncRouteList: (state) => state.permission.keepAliveAsyncRouteList
     }),
+    keepAlivePages() {
+      return this.keepAlivePageList.concat([
+        ...this.keepAliveAsyncRouteList,
+        ...this.keepAliveLayoutList
+      ])
+    },
     key() {
       return this.$route.fullPath
     }

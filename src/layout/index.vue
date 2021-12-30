@@ -3,7 +3,7 @@
     <!-- 布局页 -->
     <nav-bars v-if="$route.fullPath.includes('page')"></nav-bars>
     <tab-bars v-else></tab-bars>
-    <div class="wrapper">
+    <div :class="{ wrapper: !$route.fullPath.includes('page') }">
       <app-mains ref="appMains"></app-mains>
     </div>
   </div>
@@ -20,9 +20,7 @@ export default {
     TabBars,
     NavBars
   },
-  mounted() {
-    console.log(this.$refs.appMains.$children[0])
-  },
+  mounted() {},
   computed: {
     key() {
       return this.$route.fullPath
@@ -33,11 +31,8 @@ export default {
 </script>
 
 <style scoped>
-.layout {
-  height: 100%;
-}
 .wrapper {
   box-sizing: border-box;
-  padding-bottom: 120px;
+  padding-bottom: 55Px;
 }
 </style>

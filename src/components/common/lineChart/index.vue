@@ -70,7 +70,6 @@ export default {
           },
           axisLabel: {
             formatter: function (value, index) {
-              console.log(value, index)
               if (index === 0) {
                 return '{leisure|' + '空闲' + '}'
               } else {

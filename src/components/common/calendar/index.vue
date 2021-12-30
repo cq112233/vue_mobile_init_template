@@ -103,7 +103,6 @@ export default {
         tempDateList.push(obj)
       }
       const fisrtLength = tempDateList[0].weekNameIndex
-      console.log(tempDateList[0].weekNameIndex, 111)
       const lastLength = tempDateList[tempDateList.length - 1].weekNameIndex
       if (tempDateList[0].weekNameIndex !== 0) {
         for (let index = 0; index < fisrtLength; index++) {
