@@ -5,15 +5,11 @@
       <van-button @click="handlerCount(-1000)">go---> -1000</van-button>
     </div>
 
-    <div id="count" :style="{ color:colorGather.brand,textAlign:'center'}">
-    </div>
-
+    <div id="count" :style="{ color: colorGather.brand, textAlign: 'center' }"></div>
   </div>
-
 </template>
 
 <script>
-
 import { CountUp } from 'countup.js'
 import mixin from '@/utils/mixin'
 export default {
@@ -73,13 +69,13 @@ export default {
     },
     init() {
       this.instance = new CountUp('count', this.endVal, {
-        useGrouping: this.useGrouping,// 是否展示千分位
-        useEasing: this.useEasing,// 使用缓和功能
+        useGrouping: this.useGrouping, // 是否展示千分位
+        useEasing: this.useEasing, // 使用缓和功能
         duration: this.duration, // 转换时长
-        separator: this.separator,//千分位分割符
-        startVal: this.startVal,//开始val
-        prefix: this.prefix,//前缀
-        suffix: this.suffix//后缀
+        separator: this.separator, // 千分位分割符
+        startVal: this.startVal, // 开始val
+        prefix: this.prefix, // 前缀
+        suffix: this.suffix // 后缀
       })
       this.instance.start()
     },
@@ -93,11 +89,11 @@ export default {
         this.callback && this.callback(this.instance)
       })
     },
-    //重置
+    // 重置
     reset() {
       this.instance.reset()
     },
-    //数字升级
+    // 数字升级
     update(number) {
       this.instance.update(number)
     }
@@ -106,7 +102,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
-// @import "../../../assets/theme/index.less";
+// @import "../../themeSetting/index.less";
 .btns {
   // color: @warning;
 }

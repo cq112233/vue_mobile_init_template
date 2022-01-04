@@ -4,39 +4,44 @@
   </div>
 </template>
 
-<script> 
-// 混入方法，钩子
-import commonMixin from '@/utils/mixin'
-// ajax
-import {} from '@/apis'
-export default {
-  props:{},
-  mixins:[commonMixin],
-  name:"{{camelCase name}}",
-  data(){
-    return {}
-  },
-  components:{},
-  created(){},
-  // 相当于 mounted
-  onLoad() {},
-   // 相当于 activated
-  onShow() {},
-   // 相当于 deactivated
-  onHide() {},
-  // 相当于 destroyed
-  onUnload() {},
-  computed:{},
-  methods:{},
-  watch:{},
-  // 清除定时器
-  beforeRouteLeave() {}
-};
+<script>
+  // 混入方法，钩子
+  import commonMixin from '@/utils/mixin'
+  // ajax
+  import { } from '@/apis'
+  export default {
+    props: {},
+    mixins: [commonMixin],
+    name: "{{camelCase name}}",
+    data() {
+      return {}
+    },
+    components: {},
+    created() { },
+    // 相当于 mounted
+    onLoad() { },
+    // 相当于 activated
+    onShow() { },
+    // 相当于 deactivated
+    onHide() { },
+    // 相当于 destroyed
+    onUnload() { },
+    computed: {},
+    methods: {},
+    watch: {},
+    // 清除定时器
+    beforeRouteLeave() { }
+  };
 </script>
 
 <style lang="less" scoped>
-@import url('~@/assets/css/custom.less');
-  .{{ snakeCssCase name}} {
+  @import url('~@/styles/custom.less');
 
+  . {
+      {
+      snakeCssCase name
+    }
   }
+
+    {}
 </style>

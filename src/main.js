@@ -6,7 +6,7 @@ import { i18n } from './plugins/i18n' // 多语言
 import 'normalize.css/normalize' // github移动端通用初始化样式
 import 'lib-flexible' // 移动端适配
 
-import './assets/css/init' // 自定义初始化样式(配置通用样式)
+import './styles/init' // 自定义初始化样式(配置通用样式)
 import './env' // 环境变量设置,也可以在vue-cli自定义的.env.*文件配置  env需要后端配合跨域问题
 import './permission' // 全局路由守卫
 import './directives' // 自定义指令集

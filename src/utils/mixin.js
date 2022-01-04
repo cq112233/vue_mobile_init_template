@@ -1,10 +1,12 @@
+
 /**
 @description mixin 配置
 */
 import * as totalUtils from './index'
-import themeColors from '@/assets/theme' // 自定义主题颜色
+import themeColors from '@/theme/themeSetting' // 自定义主题颜色
 import { mapState } from 'vuex'
 import axios from 'axios'
+
 const customMixin = {
   // 防小程序钩子方法
   mounted() {

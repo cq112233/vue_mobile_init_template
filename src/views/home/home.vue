@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('~@/assets/css/custom.less');
+@import url('~@/styles/custom.less');
 .test {
   .display-column-center();
 }
