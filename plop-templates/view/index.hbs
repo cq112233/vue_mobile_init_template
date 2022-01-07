@@ -17,20 +17,15 @@
       return {}
     },
     components: {},
-    created() { },
-    // 相当于 mounted
-    onLoad() { },
-    // 相当于 activated
-    onShow() { },
-    // 相当于 deactivated
-    onHide() { },
-    // 相当于 destroyed
-    onUnload() { },
+    mounted() {},
+    activated() {},
     computed: {},
     methods: {},
     watch: {},
     // 清除定时器
-    beforeRouteLeave() { }
+    beforeRouteLeave(to,from,next) {
+      next()
+    }
   };
 </script>
 
