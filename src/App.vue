@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <p class="xx">xxxx</p>
     <!-- 根组件 -->
     <keep-alive :include="['404']">
       <router-view></router-view>
@@ -26,6 +27,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.xx {
+  color: @red-primary;
+}
 .backTopArrow {
   right: 20px;
   bottom: 500px;

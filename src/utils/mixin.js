@@ -3,7 +3,7 @@
 @description mixin 配置
 */
 import * as totalUtils from './index'
-import themeColors from '@/theme/themeSetting' // 自定义主题颜色
+import themeColors from '@/styles/variables' // 自定义主题颜色
 import { mapState } from 'vuex'
 import axios from 'axios'
 

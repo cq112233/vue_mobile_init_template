@@ -5,7 +5,7 @@ const WebpackBar = require('webpackbar')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
-const vantTheme = path.resolve(__dirname, './src/theme/themeSetting/index.less')
+const vantTheme = path.resolve(__dirname, './src/styles/variables.less')
 const isDev = process.env.NODE_ENV === 'development' // 是否是生产环境或测试环境
 const appConfig = require('./app.config.js')
 const productionGzipExtensions = ['js', 'css'] // 压缩的文件类型

@@ -102,7 +102,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
-// @import "../../themeSetting/index.less";
+// @import "../../../styles/variables.less";
 .btns {
   // color: @warning;
 }

@@ -36,6 +36,11 @@ module.exports = plop => {
       message: 'component name',
       default: 'myComponent'
     },
+    {
+      type: 'confirm',
+      name: 'demand',
+      message: 'is this for demand'
+    },
     // 选择 是项目组件 or 通用组件 😺
     {
       type: 'list',
@@ -52,6 +57,7 @@ module.exports = plop => {
     }
     ],
     actions(option) {
+      // return
       let actions = []
       if (option.type === 'project') {
         actions = actions.concat([{
@@ -60,13 +66,7 @@ module.exports = plop => {
           templateFile: 'plop-templates/component/index.hbs'
         }])
       } else {
-        // 全局注册 公共组件
-        actions = actions.concat([{
-          type: 'add', // 类型添加
-          path: 'src/components/common/{{camelCase name}}/index.vue',
-          templateFile: 'plop-templates/component/index.hbs'
-        },
-        {
+        const demand = option.demand ? [] : [{
           type: 'append',
           pattern: IMPORT_COMMON_COMPONENT,
           path: 'src/components/common/index.js',
@@ -77,7 +77,14 @@ module.exports = plop => {
           pattern: IMPORT_COMMON_COMPONENT_NAME,
           path: 'src/components/common/index.js',
           template: '{{ camelCase name }},'
-        }
+        }]
+        // 全局注册 公共组件
+        actions = actions.concat([{
+          type: 'add', // 类型添加
+          path: 'src/components/common/{{camelCase name}}/index.vue',
+          templateFile: 'plop-templates/component/index.hbs'
+        },
+        ...demand
         ])
       }
       return actions
