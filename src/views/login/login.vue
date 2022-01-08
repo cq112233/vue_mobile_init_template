@@ -66,6 +66,7 @@ export default {
           roleId: this.role
         })
         .then((res) => {
+          this.$toast.clear()
           const backPath = this.$route.query.redirect || '/layout/home'
           this.$router.replace({ path: backPath })
         })

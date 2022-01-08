@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p class="xx">xxxx</p>
+<van-button type="info">信息按钮</van-button>
     <!-- 根组件 -->
     <keep-alive :include="['404']">
       <router-view></router-view>
