@@ -7,7 +7,11 @@
 </template>
 
 <script>
-export default {}
+import commonMixin from '@/utils/mixin'
+export default {
+  name: '404',
+  mixins: [commonMixin]
+}
 </script>
 
 <style>

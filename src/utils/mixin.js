@@ -22,12 +22,13 @@ const customMixin = {
   destroyed() {
     this.$options.onUnload && this.$options.onUnload.call(this)
   },
-  // 下拉刷新
-  onPullDownRefresh() {
-
-  },
   // 清除定时器
   beforeRouteLeave(to, from, next) {
+    if (from.name === '404') {
+      to.meta.savedPosition = 0
+      document.body.scrollTop = 0
+    }
+
     // 只有keepAlive 的 保持滚动状态
     if (from.meta.keepAlive) {
       from.meta.savedPosition = document.body.scrollTop
@@ -65,9 +66,7 @@ const customMixin = {
   computed: {
     // 每个实例全局 状态
     ...mapState({
-      app: (state) => state.app,
-      user: (state) => state.user,
-      permission: (state) => state.permission
+      app: (state) => state.app
     }),
     // 颜色集合
     themeColors() {

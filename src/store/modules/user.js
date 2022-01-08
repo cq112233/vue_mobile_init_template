@@ -21,7 +21,7 @@ export default {
   state: {
     accessToken: getLocalStore('ACCESSTOKEN') || '', // 令牌
     roles: [], // 权限
-    userInfo: JSON.parse(getLocalStore('USERINFO')) || {} // 路由
+    userInfo: JSON.parse(getLocalStore('USERINFO')) || null // 路由
   },
   mutations: {
     [SET_USERINFO_MUTATION]: (state, payload) => {
@@ -66,9 +66,11 @@ export default {
       rootState
     }) => {
       return new Promise((resolve, reject) => {
-        commit(SET_USERINFO_MUTATION, '')
+        // 清除userInfo
+        commit(SET_USERINFO_MUTATION, null)
         commit(SET_ACCESSTOKEN, '')
         commit(SET_ROLES, [])
+        // 本地token
         // 重置路由
         resetRouter()
         commit(RESETROUTER)

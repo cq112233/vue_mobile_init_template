@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-<van-button type="info">信息按钮</van-button>
     <!-- 根组件 -->
     <keep-alive :include="['404']">
       <router-view></router-view>
@@ -22,7 +21,9 @@ export default {
 
   watch: {},
   computed: {},
-  mounted() {},
+  mounted() {
+    console.log(this.$router)
+  },
   methods: {}
 }
 </script>
