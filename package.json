@@ -6,9 +6,9 @@
   "description": "a vue mobile project",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build:test": "vue-cli-service build --mode test",
-    "build:prod": "vue-cli-service build",
+    "serve": "organization=nh vue-cli-service serve --open",
+    "build:test": "organization=nh vue-cli-service build --mode test",
+    "build:prod": "organization=nh vue-cli-service build",
     "create page": "plop page",
     "create component": "plop component",
     "create layout": "plop layout",

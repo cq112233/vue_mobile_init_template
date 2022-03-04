@@ -1,9 +1,12 @@
 <template>
   <div id="app">
+    <van-button type="info">信息按钮</van-button>
     <!-- 根组件 -->
+     <div class="xx">11222</div>
     <keep-alive :include="['404']">
       <router-view></router-view>
     </keep-alive>
+
   </div>
 </template>
 <script>
@@ -29,7 +32,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .xx {
-  color: @red-primary;
+  color: @testColor;
 }
 .backTopArrow {
   right: 20px;
