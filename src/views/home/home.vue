@@ -1,5 +1,26 @@
 <template>
   <div>
+        <SlickList
+      axis="x"
+      v-model="fruits"
+      :distance='5'
+      class="menuContain"
+      helperClass="menu-dragging"
+    >
+      <SlickItem
+        v-for="(fruit, i) in fruits"
+        :key="fruit"
+        :index="i"
+      >
+        <div class="menu">
+          <div class="label"> {{ fruit }}</div>
+          <!-- <i
+              :class="icons[iconStyl(item.url)]"
+              style="font-size: 50px !important; color: #555"
+            /> -->
+        </div>
+      </SlickItem>
+    </SlickList>
     {{ text }}
     <van-button to="/page/lang">切换语言</van-button>
     <van-button :to="{ path: '/page/changeTheme' }">切换主题</van-button>
@@ -20,6 +41,7 @@
 
 <script>
 import { getJson } from '@/apis'
+import { SlickList, SlickItem } from 'vue-slicksort'
 import commonMixin from '@/utils/mixin'
 import Test from 'Test'
 import lineChart from 'lineChart'
@@ -30,13 +52,16 @@ export default {
   mixins: [commonMixin],
   data() {
     return {
-      text: ''
+      text: '',
+      fruits: ['1', '2']
     }
   },
   components: {
     Test,
     calendar,
-    lineChart
+    lineChart,
+    SlickList,
+    SlickItem
   },
   mounted() {},
   beforeDestroy() {},
@@ -72,5 +97,57 @@ export default {
 @import url('~@/styles/custom.less');
 .test {
   .display-column-center();
+}
+.menuContain {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  background-color: #fff;
+  .menu {
+    width: 188px;
+    height: 250px;
+    padding: 60px 0;
+    cursor: pointer;
+    text-align: center;
+    border-right: 2px solid #efefef;
+    border-bottom: 2px solid #efefef;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    box-sizing: border-box;
+    .label {
+      margin-bottom: 40px;
+    }
+  }
+  // .operate-menu {
+  //   width: 188px;
+  //   height: 250px;
+  //   border-right: 2px solid #efefef;
+  //   border-bottom: 2px solid #efefef;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   cursor: pointer;
+  //   color: #999;
+  // }
+}
+.menu-dragging {
+  width: 188px;
+  height: 250px;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #efefef;
+  font-size: 20px;
+  box-sizing: border-box;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  .label {
+    margin-bottom: 40px;
+  }
 }
 </style>

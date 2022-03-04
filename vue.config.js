@@ -128,19 +128,19 @@ module.exports = {
       return args
     })
     // 压缩图片
-    config.module
-      .rule('images')
-      .use('image-webpack-loader')
-      .loader('image-webpack-loader')
-      .options({
-        // { bypassOnDebug: true }
-        mozjpeg: { progressive: true, quality: 65 }, // Compress JPEG images
-        optipng: { enabled: false }, // Compress PNG images
-        pngquant: { quality: [0.65, 0.9], speed: 4 }, // Compress PNG images
-        gifsicle: { interlaced: false } // Compress SVG images
-        //					webp: { quality: 75 }
-      })
-      .end()
+    // config.module
+    //   .rule('images')
+    //   .use('image-webpack-loader')
+    //   .loader('image-webpack-loader')
+    //   .options({
+    //     // { bypassOnDebug: true }
+    //     mozjpeg: { progressive: true, quality: 65 }, // Compress JPEG images
+    //     optipng: { enabled: false }, // Compress PNG images
+    //     pngquant: { quality: [0.65, 0.9], speed: 4 }, // Compress PNG images
+    //     gifsicle: { interlaced: false } // Compress SVG images
+    //     //					webp: { quality: 75 }
+    //   })
+    //   .end()
     // 修复HMR
     config.resolve.symlinks(true)
   },

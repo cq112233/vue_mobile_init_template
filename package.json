@@ -20,6 +20,7 @@
     "@better-scroll/core": "^2.4.2",
     "axios": "^0.22.0",
     "better-scroll": "^2.4.2",
+    "cqi-hope-ui": "0.0.9",
     "dayjs": "^1.10.7",
     "echarts": "^5.2.1",
     "lib-flexible": "^0.3.2",
@@ -31,8 +32,8 @@
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.5.3",
     "vue-scroller": "^2.2.4",
-    "vuex": "^3.6.0",
-    "cqi-hope-ui": "0.0.9"
+    "vue-slicksort": "^1.2.0",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.9",
