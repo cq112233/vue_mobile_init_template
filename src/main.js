@@ -11,7 +11,7 @@ import './env' // 环境变量设置,也可以在vue-cli自定义的.env.*文件
 import './permission' // 全局路由守卫
 import './directives' // 自定义指令集
 import './filters' // 自定义过滤集
-import './theme' // 主题文件
+// import './theme' // 主题文件
 import './components/common' // 自动注册非项目全局组件
 import './components/project' // 自动注册全局项目组件
 import './components/toast/index' // 自定义Toast
@@ -45,3 +45,7 @@ const vm = new Vue({
 }).$mount('#app')
 
 console.log(vm)
+
+setTimeout(() => {
+  document.documentElement.style.setProperty('--cq-primary-color', 'red')
+}, 3000)
