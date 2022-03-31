@@ -8,3 +8,17 @@ export enum TradingStatus {
 export default {
   TradingStatus
 }
+
+
+
+function fn(x:any):any {
+  return x
+}
+
+let y = fn([1,2,3])
+
+function dealArr(x:Array<number>):Array<number> {
+  return x
+}
+
+dealArr(y)

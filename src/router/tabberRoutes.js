@@ -50,7 +50,7 @@ export default [
         name: 'home',
         meta: {
           title: '首页',
-          keepAlive: true,
+          keepAlive: false,
           enablePullDownRefresh: true
         },
         component: Home

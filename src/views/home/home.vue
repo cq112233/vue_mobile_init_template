@@ -1,6 +1,7 @@
 <template>
   <div>
-        <SlickList
+    <div v-source='1' class="source" @click="source">1</div>
+    <SlickList
       axis="x"
       v-model="fruits"
       :distance='5'
@@ -63,10 +64,10 @@ export default {
     SlickList,
     SlickItem
   },
-  mounted() {},
-  beforeDestroy() {},
-  deactivated() {},
-  onShow() {},
+  mounted() { },
+  beforeDestroy() { },
+  deactivated() { },
+  onShow() { },
   // 下拉刷新
   onPullDownRefresh(done) {
     setTimeout(() => {
@@ -76,10 +77,13 @@ export default {
     }, 5000)
   },
   // 页面滚动
-  onPageScroll() {},
+  onPageScroll() { },
   // 触底
-  onReachBottom() {},
+  onReachBottom() { },
   methods: {
+    source() {
+      console.log('xxxxx')
+    },
     getTop() {
       console.log(document.body.scrollTop, 'top')
     },
@@ -149,5 +153,10 @@ export default {
   .label {
     margin-bottom: 40px;
   }
+}
+.source {
+  width: 100px;
+  height: 100px;
+  background: #efefef;
 }
 </style>

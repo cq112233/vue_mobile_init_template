@@ -1,6 +1,9 @@
 import { setStyle } from '@/utils/domUtils'
 import store from '@/store'
 import Vue from 'vue'
+const fn = () => {
+  console.log('发送埋点api')
+}
 // 自定义指令
 const directives = {
   // 注册方法
@@ -59,6 +62,12 @@ const directives = {
     }
     if (type) {
       el.onmousedown = el.ontouchstart
+    }
+  },
+  // 埋点
+  source: {
+    bind(el, dirObj, newVnode, oldVnode) {
+      el.addEventListener('click', fn)
     }
   }
 }
