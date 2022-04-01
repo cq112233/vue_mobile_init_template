@@ -138,7 +138,7 @@ module.exports = {
     //     optipng: { enabled: false }, // Compress PNG images
     //     pngquant: { quality: [0.65, 0.9], speed: 4 }, // Compress PNG images
     //     gifsicle: { interlaced: false } // Compress SVG images
-    //     //					webp: { quality: 75 }
+    //     //webp: { quality: 75 }
     //   })
     //   .end()
     // 修复HMR
