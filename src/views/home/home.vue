@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-source='1' class="source" @click="source">1</div>
+    <div
+      v-source='1'
+      class="source"
+      @click="source"
+    >1</div>
     <SlickList
       axis="x"
       v-model="fruits"
@@ -41,7 +45,6 @@
 </template>
 
 <script>
-import { getJson } from '@/apis'
 import { SlickList, SlickItem } from 'vue-slicksort'
 import commonMixin from '@/utils/mixin'
 import Test from 'Test'
@@ -51,7 +54,7 @@ export default {
   name: 'home',
   inject: ['root'],
   mixins: [commonMixin],
-  data() {
+  data () {
     return {
       text: '',
       fruits: ['1', '2']
@@ -64,12 +67,12 @@ export default {
     SlickList,
     SlickItem
   },
-  mounted() { },
-  beforeDestroy() { },
-  deactivated() { },
-  onShow() { },
+  mounted () { },
+  beforeDestroy () { },
+  deactivated () { },
+  onShow () { },
   // 下拉刷新
-  onPullDownRefresh(done) {
+  onPullDownRefresh (done) {
     setTimeout(() => {
       console.log(this, '结束')
       this.text = 111
@@ -77,17 +80,17 @@ export default {
     }, 5000)
   },
   // 页面滚动
-  onPageScroll() { },
+  onPageScroll () { },
   // 触底
-  onReachBottom() { },
+  onReachBottom () { },
   methods: {
-    source() {
+    source () {
       console.log('xxxxx')
     },
-    getTop() {
+    getTop () {
       console.log(document.body.scrollTop, 'top')
     },
-    showToast() {
+    showToast () {
       this.$cqToast.success('成功')
       setTimeout(() => {
         this.$cqToast.clear()

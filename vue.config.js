@@ -12,7 +12,7 @@ const productionGzipExtensions = ['js', 'css'] // 压缩的文件类型
 console.log('~~开始打包咯😁,请耐心等待~~')
 
 // 合并对象属性
-function mergeObj(obj1, obj2) {
+function mergeObj (obj1, obj2) {
   if (!obj2) {
     if (!obj1) {
       const obj = Object.create(null)
@@ -74,7 +74,7 @@ module.exports = {
       preProcessor: 'less',
       patterns: [
         path.resolve(__dirname, `./src/theme/${process.env.organization}/custom/index.less`),
-        path.resolve(__dirname, `./src/theme/variables.less`)]
+        path.resolve(__dirname, './src/theme/variables.less')]
     }
   },
   devServer: {
@@ -157,7 +157,7 @@ module.exports = {
           cacheGroups: {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
-              name(module) {
+              name (module) {
                 // get the name. E.g. node_modules/packageName/not/this/part.js
                 // or node_modules/packageName
                 const packageName = module.context.match(
@@ -224,10 +224,8 @@ module.exports = {
       ...[
         // 添加 进度条
         new WebpackBar()
-
       ]
     )
-
     if (process.env.NODE_ENV === 'production' && process.env.analyz === 'analyz') {
       config.plugins.push(
         new BundleAnalyzerPlugin(
