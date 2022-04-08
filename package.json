@@ -21,6 +21,7 @@
     "@better-scroll/core": "^2.4.2",
     "axios": "^0.22.0",
     "better-scroll": "^2.4.2",
+    "big.js": "^6.1.1",
     "cqi-hope-ui": "0.0.9",
     "dayjs": "^1.10.7",
     "echarts": "^5.2.1",

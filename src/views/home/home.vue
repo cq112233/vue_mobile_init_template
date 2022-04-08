@@ -33,7 +33,7 @@
     <van-button :to="{ path: '/page/asyncRouteExample' }">asyncRouteExample</van-button>
     <van-button :to="{ path: '/page/asyncRouteExample1' }">asyncRouteExample1</van-button>
 
-    <div @click="routerReplace()">显示自定义Toast</div>
+    <div @click="routerReplace()" :style="{color:root.themeColor}">显示自定义Toast</div>
     <van-button @click="getTop">获取top</van-button>
     <div class="test"><span>1</span><span>2</span></div>
     <i class="icon icon-shoucang1"></i>
@@ -50,11 +50,12 @@ import commonMixin from '@/utils/mixin'
 import Test from 'Test'
 import lineChart from 'lineChart'
 import calendar from 'calendar'
+import { bigAdd } from '@/plugins/bigJs/helper'
 export default {
   name: 'home',
   inject: ['root'],
   mixins: [commonMixin],
-  data () {
+  data() {
     return {
       text: '',
       fruits: ['1', '2']
@@ -67,12 +68,15 @@ export default {
     SlickList,
     SlickItem
   },
-  mounted () { },
-  beforeDestroy () { },
-  deactivated () { },
-  onShow () { },
+  mounted() {
+    console.log(this.root, 'app')
+    console.log(bigAdd(bigAdd(0.1, 0.2).bigAdd(0.3), 0.3).toNumber())
+  },
+  beforeDestroy() { },
+  deactivated() { },
+  onShow() { },
   // 下拉刷新
-  onPullDownRefresh (done) {
+  onPullDownRefresh(done) {
     setTimeout(() => {
       console.log(this, '结束')
       this.text = 111
@@ -80,17 +84,17 @@ export default {
     }, 5000)
   },
   // 页面滚动
-  onPageScroll () { },
+  onPageScroll() { },
   // 触底
-  onReachBottom () { },
+  onReachBottom() { },
   methods: {
-    source () {
+    source() {
       console.log('xxxxx')
     },
-    getTop () {
+    getTop() {
       console.log(document.body.scrollTop, 'top')
     },
-    showToast () {
+    showToast() {
       this.$cqToast.success('成功')
       setTimeout(() => {
         this.$cqToast.clear()

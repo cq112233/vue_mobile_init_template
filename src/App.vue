@@ -11,7 +11,7 @@
     </transition>
     <async-example />
     {{get}}
-    <van-button type="info">信息按钮</van-button>
+    <van-button type="info" @click="themeColor = 'blue'">信息按钮</van-button>
     <!-- 根组件 -->
     <div class="xx">11222</div>
     <keep-alive :include="['404']">
@@ -32,7 +32,8 @@ export default {
   data() {
     return {
       get: 1,
-      show: false
+      show: false,
+      themeColor: 'red' // 全局主题色
     }
   },
   components: {

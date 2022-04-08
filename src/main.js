@@ -19,13 +19,13 @@ import './components/toast/index' // 自定义Toast
 import './plugins/echarts' // 按需加载echart
 import './plugins/vant'// 全局按需引入vant
 import './plugins/vueScroller'// 全局按需引入vant
+import './plugins/bigJs'
 
 // import './plugins/webSocket' // 自定义ws连接器
-
 if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line no-unused-expressions
+  // eslint-disable-next-line
   import('./plugins/mock') // mock 请求
-  // eslint-disable-next-line no-unused-expressions
+  // eslint-disable-next-line
   import('./plugins/eruda') // 开发环境,调试工具
 } // 自定义过滤集
 
