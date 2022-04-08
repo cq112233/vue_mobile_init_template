@@ -31,3 +31,16 @@ export function changeTheme(themeValue) {
   setAttr(getHtmlDom(), 'class', `theme-${themeValue}`)
   return themeValue
 }
+
+export async function asynDealFun(promiseInstance, isLink) {
+  try {
+    if (typeof promiseInstance !== 'function') return console.log('xxx')
+    const data = promiseInstance && await promiseInstance()
+    return [data, null]
+  } catch (err) {
+    console.warn(err, 11)
+    return [{}, err]
+  } finally {
+    isLink = false
+  }
+}

@@ -1,5 +1,4 @@
 import request from '@/plugins/axios/request'
-
 export const getAppVersion = (data) => {
   return request.get('/api/version', data)
 }
@@ -15,3 +14,4 @@ export function getJson() {
       })
   })
 }
+

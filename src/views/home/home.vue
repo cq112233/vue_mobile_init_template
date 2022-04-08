@@ -68,8 +68,8 @@ export default {
     SlickList,
     SlickItem
   },
-  mounted() {
-    console.log(this.root, 'app')
+  async mounted() {
+    console.log(this.root, 'app', await this.asynDealFun(() => {}))
     console.log(bigAdd(bigAdd(0.1, 0.2).bigAdd(0.3), 0.3).toNumber())
   },
   beforeDestroy() { },
